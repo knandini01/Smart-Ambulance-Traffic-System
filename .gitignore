@@ -1,0 +1,16 @@
+# Build artifacts inside project
+Ambulance_Traffic_control/Debug/
+
+# Intermediate compiler and linker outputs
+*.o
+*.d
+*.su
+*.cyclo
+*.map
+*.list
+
+# IDE and OS metadata
+.settings/
+*.launch
+.DS_Store
+Thumbs.db

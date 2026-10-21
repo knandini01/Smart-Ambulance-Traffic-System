@@ -1,0 +1,471 @@
+{
+  "version": 1,
+  "author": "Smart Ambulance Traffic System",
+  "editor": "wokwi",
+
+  "parts": [
+
+    {
+      "id": "nucleo",
+      "type": "board-st-nucleo-c031c6",
+      "left": 360,
+      "top": 170,
+      "attrs": {}
+    },
+
+
+    {
+      "id": "btn1",
+      "type": "wokwi-pushbutton",
+      "left": 70,
+      "top": 150,
+      "attrs": {
+        "color": "red",
+        "label": "NORTH Ambulance",
+        "key": "N"
+      }
+    },
+
+    {
+      "id": "btn2",
+      "type": "wokwi-pushbutton",
+      "left": 70,
+      "top": 250,
+      "attrs": {
+        "color": "red",
+        "label": "EAST Ambulance",
+        "key": "E"
+      }
+    },
+
+    {
+      "id": "btn3",
+      "type": "wokwi-pushbutton",
+      "left": 70,
+      "top": 350,
+      "attrs": {
+        "color": "red",
+        "label": "SOUTH Ambulance",
+        "key": "S"
+      }
+    },
+
+    {
+      "id": "btn4",
+      "type": "wokwi-pushbutton",
+      "left": 70,
+      "top": 450,
+      "attrs": {
+        "color": "red",
+        "label": "WEST Ambulance",
+        "key": "W"
+      }
+    },
+
+    {
+      "id": "led1",
+      "type": "wokwi-led",
+      "left": 700,
+      "top": 80,
+      "attrs": {
+        "color": "red",
+        "label": "NORTH R"
+      }
+    },
+
+    {
+      "id": "r1",
+      "type": "wokwi-resistor",
+      "left": 750,
+      "top": 80,
+      "attrs": {
+        "value": "220"
+      }
+    },
+
+    {
+      "id": "led2",
+      "type": "wokwi-led",
+      "left": 700,
+      "top": 130,
+      "attrs": {
+        "color": "yellow",
+        "label": "NORTH Y"
+      }
+    },
+
+    {
+      "id": "r2",
+      "type": "wokwi-resistor",
+      "left": 750,
+      "top": 130,
+      "attrs": {
+        "value": "220"
+      }
+    },
+
+    {
+      "id": "led3",
+      "type": "wokwi-led",
+      "left": 700,
+      "top": 180,
+      "attrs": {
+        "color": "green",
+        "label": "NORTH G"
+      }
+    },
+
+    {
+      "id": "r3",
+      "type": "wokwi-resistor",
+      "left": 750,
+      "top": 180,
+      "attrs": {
+        "value": "220"
+      }
+    },
+
+    {
+      "id": "led4",
+      "type": "wokwi-led",
+      "left": 850,
+      "top": 80,
+      "attrs": {
+        "color": "red",
+        "label": "EAST R"
+      }
+    },
+
+    {
+      "id": "r4",
+      "type": "wokwi-resistor",
+      "left": 900,
+      "top": 80,
+      "attrs": {
+        "value": "220"
+      }
+    },
+
+    {
+      "id": "led5",
+      "type": "wokwi-led",
+      "left": 850,
+      "top": 130,
+      "attrs": {
+        "color": "yellow",
+        "label": "EAST Y"
+      }
+    },
+
+    {
+      "id": "r5",
+      "type": "wokwi-resistor",
+      "left": 900,
+      "top": 130,
+      "attrs": {
+        "value": "220"
+      }
+    },
+
+    {
+      "id": "led6",
+      "type": "wokwi-led",
+      "left": 850,
+      "top": 180,
+      "attrs": {
+        "color": "green",
+        "label": "EAST G"
+      }
+    },
+
+    {
+      "id": "r6",
+      "type": "wokwi-resistor",
+      "left": 900,
+      "top": 180,
+      "attrs": {
+        "value": "220"
+      }
+    },
+
+    {
+      "id": "led7",
+      "type": "wokwi-led",
+      "left": 700,
+      "top": 300,
+      "attrs": {
+        "color": "red",
+        "label": "SOUTH R"
+      }
+    },
+
+    {
+      "id": "r7",
+      "type": "wokwi-resistor",
+      "left": 750,
+      "top": 300,
+      "attrs": {
+        "value": "220"
+      }
+    },
+
+    {
+      "id": "led8",
+      "type": "wokwi-led",
+      "left": 700,
+      "top": 350,
+      "attrs": {
+        "color": "yellow",
+        "label": "SOUTH Y"
+      }
+    },
+
+    {
+      "id": "r8",
+      "type": "wokwi-resistor",
+      "left": 750,
+      "top": 350,
+      "attrs": {
+        "value": "220"
+      }
+    },
+
+    {
+      "id": "led9",
+      "type": "wokwi-led",
+      "left": 700,
+      "top": 400,
+      "attrs": {
+        "color": "green",
+        "label": "SOUTH G"
+      }
+    },
+
+    {
+      "id": "r9",
+      "type": "wokwi-resistor",
+      "left": 750,
+      "top": 400,
+      "attrs": {
+        "value": "220"
+      }
+    },
+
+
+    {
+      "id": "led10",
+      "type": "wokwi-led",
+      "left": 850,
+      "top": 300,
+      "attrs": {
+        "color": "red",
+        "label": "WEST R"
+      }
+    },
+
+    {
+      "id": "r10",
+      "type": "wokwi-resistor",
+      "left": 900,
+      "top": 300,
+      "attrs": {
+        "value": "220"
+      }
+    },
+
+    {
+      "id": "led11",
+      "type": "wokwi-led",
+      "left": 850,
+      "top": 350,
+      "attrs": {
+        "color": "yellow",
+        "label": "WEST Y"
+      }
+    },
+
+    {
+      "id": "r11",
+      "type": "wokwi-resistor",
+      "left": 900,
+      "top": 350,
+      "attrs": {
+        "value": "220"
+      }
+    },
+
+    {
+      "id": "led12",
+      "type": "wokwi-led",
+      "left": 850,
+      "top": 400,
+      "attrs": {
+        "color": "green",
+        "label": "WEST G"
+      }
+    },
+
+    {
+      "id": "r12",
+      "type": "wokwi-resistor",
+      "left": 900,
+      "top": 400,
+      "attrs": {
+        "value": "220"
+      }
+    },
+
+    {
+      "id": "bz1",
+      "type": "wokwi-buzzer",
+      "left": 600,
+      "top": 500,
+      "attrs": {
+        "volume": "0.1"
+      }
+    },
+
+    {
+      "id": "txt1",
+      "type": "wokwi-text",
+      "left": 45,
+      "top": 100,
+      "attrs": {
+        "text": "AMBULANCE DETECTION"
+      }
+    },
+
+    {
+      "id": "txt2",
+      "type": "wokwi-text",
+      "left": 690,
+      "top": 30,
+      "attrs": {
+        "text": "NORTH"
+      }
+    },
+
+    {
+      "id": "txt3",
+      "type": "wokwi-text",
+      "left": 840,
+      "top": 30,
+      "attrs": {
+        "text": "EAST"
+      }
+    },
+
+    {
+      "id": "txt4",
+      "type": "wokwi-text",
+      "left": 690,
+      "top": 250,
+      "attrs": {
+        "text": "SOUTH"
+      }
+    },
+
+    {
+      "id": "txt5",
+      "type": "wokwi-text",
+      "left": 840,
+      "top": 250,
+      "attrs": {
+        "text": "WEST"
+      }
+    },
+
+    {
+      "id": "txt6",
+      "type": "wokwi-text",
+      "left": 555,
+      "top": 450,
+      "attrs": {
+        "text": "WARNING BUZZER"
+      }
+    }
+  ],
+
+  "connections": [
+
+
+    [ "$serialMonitor:TX", "nucleo:PA3", "", [] ],
+    [ "$serialMonitor:RX", "nucleo:PA2", "", [] ],
+
+
+    [ "btn1:1.l", "nucleo:PA0", "green", [] ],
+    [ "btn1:2.l", "nucleo:GND.2", "black", [] ],
+
+    [ "btn2:1.l", "nucleo:PA1", "green", [] ],
+    [ "btn2:2.l", "nucleo:GND.2", "black", [] ],
+
+    [ "btn3:1.l", "nucleo:PA4", "green", [] ],
+    [ "btn3:2.l", "nucleo:GND.2", "black", [] ],
+
+    [ "btn4:1.l", "nucleo:PA8", "green", [] ],
+    [ "btn4:2.l", "nucleo:GND.2", "black", [] ],
+
+    
+
+    [ "nucleo:PB0", "r1:1", "green", [] ],
+    [ "r1:2", "led1:A", "green", [] ],
+    [ "led1:C", "nucleo:GND.9", "black", [] ],
+
+    [ "nucleo:PB1", "r2:1", "green", [] ],
+    [ "r2:2", "led2:A", "green", [] ],
+    [ "led2:C", "nucleo:GND.9", "black", [] ],
+
+    [ "nucleo:PB2", "r3:1", "green", [] ],
+    [ "r3:2", "led3:A", "green", [] ],
+    [ "led3:C", "nucleo:GND.9", "black", [] ],
+
+
+    [ "nucleo:PB3", "r4:1", "green", [] ],
+    [ "r4:2", "led4:A", "green", [] ],
+    [ "led4:C", "nucleo:GND.9", "black", [] ],
+
+    [ "nucleo:PB4", "r5:1", "green", [] ],
+    [ "r5:2", "led5:A", "green", [] ],
+    [ "led5:C", "nucleo:GND.9", "black", [] ],
+
+    [ "nucleo:PB5", "r6:1", "green", [] ],
+    [ "r6:2", "led6:A", "green", [] ],
+    [ "led6:C", "nucleo:GND.9", "black", [] ],
+
+
+    [ "nucleo:PB6", "r7:1", "green", [] ],
+    [ "r7:2", "led7:A", "green", [] ],
+    [ "led7:C", "nucleo:GND.9", "black", [] ],
+
+    [ "nucleo:PB7", "r8:1", "green", [] ],
+    [ "r8:2", "led8:A", "green", [] ],
+    [ "led8:C", "nucleo:GND.9", "black", [] ],
+
+    [ "nucleo:PB8", "r9:1", "green", [] ],
+    [ "r9:2", "led9:A", "green", [] ],
+    [ "led9:C", "nucleo:GND.9", "black", [] ],
+
+
+    [ "nucleo:PB9", "r10:1", "green", [] ],
+    [ "r10:2", "led10:A", "green", [] ],
+    [ "led10:C", "nucleo:GND.9", "black", [] ],
+
+    [ "nucleo:PC6", "r11:1", "green", [] ],
+    [ "r11:2", "led11:A", "green", [] ],
+    [ "led11:C", "nucleo:GND.9", "black", [] ],
+
+    [ "nucleo:PC7", "r12:1", "green", [] ],
+    [ "r12:2", "led12:A", "green", [] ],
+    [ "led12:C", "nucleo:GND.9", "black", [] ],
+
+    
+
+    [ "nucleo:PA7", "bz1:2", "green", [] ],
+    [ "bz1:1", "nucleo:GND.9", "black", [] ]
+  ],
+
+  "serialMonitor": {
+    "display": "always",
+    "newline": "lf"
+  }
+}
