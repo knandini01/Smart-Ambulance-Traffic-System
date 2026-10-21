@@ -136,22 +136,92 @@ All timing parameters are configurable in `Core/Src/main.c`:
 
 ---
 
-## 🚀 How to Run in Wokwi Simulation
+## 🎮 How to Use the Simulator (Step-by-Step Guide)
 
-1. **Simulation Files**:
-   - `diagram.json`: Circuit schematic with Nucleo-C031C6, 12 LEDs, 4 pushbuttons, and buzzer.
-   - `wokwi.toml`: Points to `firmware.elf`.
-   - `firmware.elf`: Compiled binary ready for simulation.
+You can run and test this simulation directly inside **VS Code** using the **Wokwi Simulator extension**.
 
-2. **Starting the Simulation**:
-   - Open this workspace in VS Code with the Wokwi extension installed.
-   - Press `F1` and select **Wokwi: Start Simulator**, or open `diagram.json` and click the play button.
-   - Open the **Wokwi Serial Monitor** (115200 baud) to monitor live junction telemetry.
+### Step 1: Open the Project in VS Code
+1. Clone or open this repository in VS Code:
+   ```bash
+   git clone https://github.com/knandini01/Smart-Ambulance-Traffic-System.git
+   ```
+2. Make sure the **Wokwi Simulator** extension is installed in VS Code:
+   - Go to the Extensions panel (`Ctrl+Shift+X` or `Cmd+Shift+X`).
+   - Search for **Wokwi Simulator** by Wokwi and click **Install**.
 
-3. **Testing Ambulance Priority**:
-   - Press **`N`**, **`E`**, **`S`**, or **`W`** on your keyboard to trigger an ambulance on North, East, South, or West.
-   - Observe the safe transition from green to yellow, then all-red, followed by 10 seconds of green for the requested approach with the buzzer sounding.
-   - Press multiple keys to test round-robin queuing and anti-starvation.
+### Step 2: Start the Simulation
+1. Open the file [`diagram.json`](diagram.json) in VS Code.
+2. Click the green **Play (Start Simulation)** button in the top-right corner of the editor, or press `F1` and select **Wokwi: Start Simulator**.
+3. The simulator canvas will launch showing the Nucleo-C031C6 board, 12 LEDs, 4 pushbuttons, and the buzzer.
+4. The **Wokwi Serial Monitor** will automatically open at the bottom (configured at 115200 baud).
+
+---
+
+### Step 3: Interactive Controls & Keyboard Shortcuts
+
+You can trigger ambulance arrivals either by clicking the red buttons on the diagram with your mouse or by pressing their keyboard shortcuts:
+
+| Action | Control | How to Trigger |
+| :--- | :---: | :--- |
+| **North Ambulance** | `btn1` | Press key **`N`** on your keyboard, or click the **NORTH Ambulance** button |
+| **East Ambulance** | `btn2` | Press key **`E`** on your keyboard, or click the **EAST Ambulance** button |
+| **South Ambulance** | `btn3` | Press key **`S`** on your keyboard, or click the **SOUTH Ambulance** button |
+| **West Ambulance** | `btn4` | Press key **`W`** on your keyboard, or click the **WEST Ambulance** button |
+
+---
+
+### Step 4: Step-by-Step Testing Walkthrough
+
+Follow these 4 tests to verify all system behaviors:
+
+#### 🟢 Test 1: Normal Traffic Cycle (Hands-Free)
+1. Start the simulation and do not press any buttons.
+2. Watch the traffic signals cycle naturally:
+   - **North Green** turns on for 5 seconds.
+   - North switches to **Yellow** for 2 seconds.
+   - **All 4 Red LEDs** turn on for a 1-second intersection clearance.
+   - **East Green** turns on for 5 seconds, followed by Yellow (2s) and All-Red (1s).
+   - Sequence repeats through **South**, **West**, and returns to **North**.
+3. Observe the Serial Monitor output:
+   ```text
+   System initialized
+   Normal traffic: NORTH GREEN
+   Transition: NORTH YELLOW
+   Transition: ALL RED
+   Normal traffic: EAST GREEN
+   ```
+
+#### 🚨 Test 2: Emergency Ambulance Priority
+1. While North has a green light, press **`E`** (East Ambulance).
+2. Observe the safe transition:
+   - North immediately transitions to **Yellow** for 2 seconds (it never abruptly cuts off).
+   - All 4 directions show **Red** for 1 second.
+   - **East Green** turns ON for a full **10 seconds**.
+   - The **Warning Buzzer** turns ON.
+   - Serial Monitor prints: `Ambulance request received: EAST` and `Ambulance priority granted: EAST`.
+3. When the 10 seconds expire, East transitions to Yellow (2s) and All-Red (1s), the buzzer turns OFF, and normal traffic resumes safely.
+
+#### 🔄 Test 3: Multiple Ambulances & Queueing
+1. While any light is green, press **`S`** (South Ambulance) and immediately press **`W`** (West Ambulance).
+2. Observe:
+   - Traffic safely clears and grants green to the **South Ambulance** first for 10 seconds (buzzer sounds).
+   - The West request is **not lost**—it is held in the queue.
+   - Once South finishes its yellow and all-red clearance, **West Ambulance** is immediately granted its 10-second priority green.
+   - The Serial Monitor confirms both requests were queued and serviced consecutively.
+
+#### 🛡️ Test 4: Anti-Starvation Protection (Fairness Rule)
+1. Simulate a heavy emergency flood by pressing **`N`**, then **`E`**, then **`S`** in rapid succession.
+2. **First Emergency**: North is granted priority (Consecutive: 1/2).
+3. **Second Emergency**: East is granted priority (Consecutive: 2/2).
+4. **Anti-Starvation Trigger**:
+   - Because 2 ambulances were served in a row, the controller detects that civilian lanes are at risk of being trapped.
+   - Instead of immediately granting green to the South ambulance, the controller safely pauses emergencies and grants a **full 5-second normal green** to whichever civilian direction has waited the longest!
+   - Serial Monitor displays:
+     ```text
+     Anti-starvation: Max consecutive ambulances (2) reached!
+     Anti-starvation: Granting guaranteed normal green to longest-waiting direction: SOUTH
+     ```
+5. Once the civilian phase completes safely (5s Green -> 2s Yellow -> 1s All-Red), the system automatically resumes the queue and serves the South ambulance.
 
 ---
 
@@ -161,7 +231,7 @@ All timing parameters are configurable in `Core/Src/main.c`:
 ├── diagram.json                 # Wokwi circuit diagram & wiring
 ├── wokwi.toml                   # Wokwi simulation configuration
 ├── firmware.elf                 # Pre-compiled executable ELF binary
-├── README.md                    # Project documentation
+├── README.md                    # Project documentation & simulator guide
 └── Ambulance_Traffic_control/   # Complete STM32CubeIDE project
     ├── Core/
     │   ├── Inc/                 # Header files (main.h, stm32c0xx_it.h)
